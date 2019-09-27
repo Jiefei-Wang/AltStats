@@ -1,0 +1,176 @@
+[
+    {
+        "definitions" : [
+            {
+                "column" : 5,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/Arith_generic.cpp",
+                "kind" : 6,
+                "line" : 13,
+                "name" : "get_arith_binary_operator_type(const char *, SEXP, SEXP)",
+                "parent_name" : "",
+                "usr" : "c:@F@get_arith_binary_operator_type#*1C#*$@S@SEXPREC#S1_#"
+            },
+            {
+                "column" : 10,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/Arith_generic.cpp",
+                "kind" : 6,
+                "line" : 60,
+                "name" : "get_numeric_region(SEXP, R_xlen_t, R_xlen_t, void *)",
+                "parent_name" : "",
+                "usr" : "c:@F@get_numeric_region#*$@S@SEXPREC#I#I#*v#"
+            },
+            {
+                "column" : 10,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/Arith_generic.cpp",
+                "kind" : 6,
+                "line" : 72,
+                "name" : "get_numeric_region_rep(SEXP, R_xlen_t, R_xlen_t, void *)",
+                "parent_name" : "",
+                "usr" : "c:@F@get_numeric_region_rep#*$@S@SEXPREC#I#I#*v#"
+            },
+            {
+                "column" : 3,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/Arith_generic.cpp",
+                "kind" : 6,
+                "line" : 86,
+                "name" : "binary_oprate(const char *, T, T)",
+                "parent_name" : "",
+                "usr" : "c:@FT@>1#Tbinary_oprate#*1C#t0.0#S1_#"
+            },
+            {
+                "column" : 3,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/Arith_generic.cpp",
+                "kind" : 6,
+                "line" : 147,
+                "name" : "get_element_by_type(void *, R_xlen_t, bool, R_xlen_t, int, R_xlen_t)",
+                "parent_name" : "",
+                "usr" : "c:@FT@>1#Tget_element_by_type#*v#I#b#I#I#I#"
+            },
+            {
+                "column" : 6,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/Arith_generic.cpp",
+                "kind" : 6,
+                "line" : 175,
+                "name" : "C_binary_arith_operator(SEXP, SEXP, SEXP)",
+                "parent_name" : "",
+                "usr" : "c:@F@C_binary_arith_operator#*$@S@SEXPREC#S0_#S0_#"
+            },
+            {
+                "column" : 5,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/Arith_generic.cpp",
+                "kind" : 6,
+                "line" : 278,
+                "name" : "get_arith_unary_operator_type(const char *, SEXP)",
+                "parent_name" : "",
+                "usr" : "c:@F@get_arith_unary_operator_type#*1C#*$@S@SEXPREC#"
+            },
+            {
+                "column" : 6,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/Arith_generic.cpp",
+                "kind" : 6,
+                "line" : 286,
+                "name" : "C_arith_unary_operator(SEXP, SEXP)",
+                "parent_name" : "",
+                "usr" : "c:@F@C_arith_unary_operator#*$@S@SEXPREC#S0_#"
+            }
+        ],
+        "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/Arith_generic.cpp",
+        "file_last_write" : 1569429817
+    },
+    {
+        "definitions" : [
+            {
+                "column" : 6,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/C_interface.cpp",
+                "kind" : 6,
+                "line" : 6,
+                "name" : "C_has_ptr(SEXP)",
+                "parent_name" : "",
+                "usr" : "c:@F@C_has_ptr#*$@S@SEXPREC#"
+            }
+        ],
+        "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/C_interface.cpp",
+        "file_last_write" : 1569426950
+    },
+    {
+        "definitions" : [
+        ],
+        "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/macros.h",
+        "file_last_write" : 1569429414
+    },
+    {
+        "definitions" : [
+            {
+                "column" : 6,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/tools.cpp",
+                "kind" : 6,
+                "line" : 8,
+                "name" : "make_call(SEXP)",
+                "parent_name" : "",
+                "usr" : "c:@F@make_call#*$@S@SEXPREC#"
+            },
+            {
+                "column" : 6,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/tools.cpp",
+                "kind" : 6,
+                "line" : 12,
+                "name" : "make_call(SEXP, SEXP)",
+                "parent_name" : "",
+                "usr" : "c:@F@make_call#*$@S@SEXPREC#S0_#"
+            },
+            {
+                "column" : 6,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/tools.cpp",
+                "kind" : 6,
+                "line" : 16,
+                "name" : "make_call(SEXP, SEXP, SEXP)",
+                "parent_name" : "",
+                "usr" : "c:@F@make_call#*$@S@SEXPREC#S0_#S0_#"
+            },
+            {
+                "column" : 6,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/tools.cpp",
+                "kind" : 6,
+                "line" : 20,
+                "name" : "make_call(SEXP, SEXP, SEXP, SEXP)",
+                "parent_name" : "",
+                "usr" : "c:@F@make_call#*$@S@SEXPREC#S0_#S0_#S0_#"
+            },
+            {
+                "column" : 6,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/tools.cpp",
+                "kind" : 6,
+                "line" : 24,
+                "name" : "make_call(SEXP, SEXP, SEXP, SEXP, SEXP)",
+                "parent_name" : "",
+                "usr" : "c:@F@make_call#*$@S@SEXPREC#S0_#S0_#S0_#S0_#"
+            },
+            {
+                "column" : 6,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/tools.cpp",
+                "kind" : 6,
+                "line" : 28,
+                "name" : "make_call(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)",
+                "parent_name" : "",
+                "usr" : "c:@F@make_call#*$@S@SEXPREC#S0_#S0_#S0_#S0_#S0_#"
+            },
+            {
+                "column" : 5,
+                "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/tools.cpp",
+                "kind" : 6,
+                "line" : 35,
+                "name" : "get_type_size(int)",
+                "parent_name" : "",
+                "usr" : "c:@F@get_type_size#I#"
+            }
+        ],
+        "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/tools.cpp",
+        "file_last_write" : 1569426832
+    },
+    {
+        "definitions" : [
+        ],
+        "file" : "C:/Users/Jeff/OneDrive/course material/work/Roswell park/AltStat/AltStat/src/tools.h",
+        "file_last_write" : 1569256425
+    }
+]

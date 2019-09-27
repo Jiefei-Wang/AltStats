@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1568384805817.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D03F3C61",
+    "lastKnownWriteTime" : 1568399401,
+    "last_content_update" : 1568399401984,
+    "path" : "D:/OneDrive/course material/work/Roswell park/AltStat/AltStat/inst/test/test2.R",
+    "project_path" : "inst/test/test2.R",
+    "properties" : {
+        "cursorPosition" : "14,9",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
