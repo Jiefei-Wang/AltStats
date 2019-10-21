@@ -10,10 +10,18 @@ Description: One paragraph description of what the package does as one or more
 License: GPL (>= 2)
 Imports: 
     Rcpp (>= 1.0.2),
-    methods,
-    AltWrapper
+    methods
 LinkingTo: Rcpp
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
 Encoding: UTF-8
+Suggests: 
+    testthat
+Collate: 
+    'RcppExports.R'
+    'classDefine.R'
+    'groupGeneric.R'
+    'classMethodDefine.R'
+    'tools.R'
+    'zzz.R'

@@ -1,3 +1,33 @@
+#define CHECK_NA(type,x) \
+if (std::is_same<type, int>::value&&x == NA_INTEGER) {\
+	return(NA_INTEGER);\
+}\
+if (std::is_same<type, double>::value&&x == NA_REAL) {\
+		return(NA_REAL);\
+}
+
+#define IS_NA(x,type)\
+(type==INTSXP?x==NA_INTEGER:(type==REALSXP?x==NA_REAL:TRUE))
+
+
+
+
+#define SET_ELT_TEMPLATE(x,i,func,args)\
+switch (TYPEOF(x))\
+{\
+	case INTSXP:\
+		SET_INTEGER_ELT(x,i,func<int>args);\
+		break;\
+	case REALSXP:\
+		SET_REAL_ELT(x,i,func<double>args);\
+		break;\
+	case LGLSXP:\
+		SET_LOGICAL_ELT(x,i,func<int>args);\
+		break;\
+	default:\
+		Rf_error("Unknow data type\n");\
+		break;\
+}
 #define SET_ELT(x,i,v)\
 switch (TYPEOF(x))\
 {\

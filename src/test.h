@@ -1,4 +1,3 @@
-// [[Rcpp::export]]
 SEXP C_binary_arith_operator(SEXP op, SEXP x, SEXP y) {
 	const char* op_char = STRSXP_TO_CHAR(op);
 	R_xlen_t x_length = XLENGTH(x);

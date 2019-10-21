@@ -1,36 +1,6 @@
 {
     "debugBreakpointsState" : {
         "breakpoints" : [
-            {
-                "editor_line_number" : 25,
-                "editor_state" : 1,
-                "function_name" : "toplevel",
-                "function_steps" : "",
-                "id" : 3,
-                "is_package_breakpoint" : false,
-                "is_pending_debug_completion" : false,
-                "line_number" : 25,
-                "needs_updated_steps" : false,
-                "package_name" : "",
-                "path" : "C:/Users/wangj/OneDrive/course material/work/Roswell park/AltStat/AltStat/R/groupGeneric.R",
-                "state" : 1,
-                "type" : 1
-            },
-            {
-                "editor_line_number" : 2,
-                "editor_state" : 1,
-                "function_name" : "arith_operator",
-                "function_steps" : "2",
-                "id" : 5,
-                "is_package_breakpoint" : true,
-                "is_pending_debug_completion" : false,
-                "line_number" : 2,
-                "needs_updated_steps" : false,
-                "package_name" : "AltStat",
-                "path" : "C:/Users/wangj/OneDrive/course material/work/Roswell park/AltStat/AltStat/R/groupGeneric.R",
-                "state" : 1,
-                "type" : 0
-            }
         ]
     }
 }

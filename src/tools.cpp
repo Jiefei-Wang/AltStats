@@ -1,9 +1,29 @@
-#include "Rcpp.h"
 #include "tools.h"
 #include <cstdarg>
 using namespace std;
 
 
+SEXP allocate_result(SEXP x, int type, R_xlen_t len) {
+	SEXP result;
+	result = Rf_allocVector(type, len);
+	return(result);
+	/*
+	if (XLENGTH(x) == len) {
+		if (TYPEOF(x) != type) {
+			result = PROTECT(Rf_coerceVector(x, type));
+			SET_ATTRIB(result, R_NilValue);
+		}
+		else {
+			result = PROTECT(Rf_duplicate(x));
+		}
+	}
+	else {
+		result = PROTECT(Rf_allocVector(type, len));
+	}
+	UNPROTECT(1);
+	return(result);
+	*/
+}
 
 SEXP make_call(SEXP fun) {
 	SEXP call = Rf_lang1(fun);
@@ -47,8 +67,6 @@ int get_type_size(int type) {
 	Rf_error("Unexpected type %d\n", type);
 	return 0;
 }
-
-
 
 
 

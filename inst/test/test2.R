@@ -27,37 +27,35 @@ getElementFunc <- function(x, i) {
 #Register ALTREP class and functions
 setAltClass(className = "compactSeq", "integer")
 setAltMethod(className = "compactSeq", getLength = lengthFunc)
-#setAltMethod(className = "compactSeq", getDataptr = getPrt)
 setAltMethod(className = "compactSeq", getElement = getElementFunc)
+#setAltMethod(className = "compactSeq", getDataptr = getPrt)
 
 #Create altWrapper object
-A_vector = makeAltrep(className = "compactSeq", x = A_compact, S4Class=T)
+A = makeAltrep(className = "compactSeq", x = A_compact, S4Class = T)
 
-A_vector
-
-
-B = A_vector+1L
-getAltData1(A_vector)
+A
+sqrt(A)
+A & FALSE
 
 
-setClass("compactSeq",contains = "altInteger")
-setMethod("Arith", signature = signature("compactSeq","numeric"),
-          function(e1,e2){
-              if(length(e2)==1&&is.integer(e2)){
-                  altData=getAltData1(e1)
-                  if(is.null(altData$ptr)){
-                      e1=duplicateObject(e1,FALSE)
-                      altData$start=altData$start+e2
-                      setAltData1(e1,altData)
-                      return(e1)
-                  }
-              }
-              e1+e2
-          })
+A+1L
+A==1L
+cumsum(A)
+range(A)
 
-A_compact = new("compactSeq",A_vector)
 
-C = A_compact+1L
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 library(IRanges)
@@ -80,4 +78,5 @@ i2=as(ir,"IPosRanges")
 #Function: coerce (package methods)
 #from="ANY", to="IPosRanges"
 #setAs("ANY", "IPosRanges", function(from) as(from, "IRanges"))
+
 

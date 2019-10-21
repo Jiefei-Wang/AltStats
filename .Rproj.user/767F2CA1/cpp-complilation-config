@@ -7,7 +7,7 @@
         "-DNDEBUG",
         "-IC:/projects/BUILD/R-source-win64/extsoft/include"
     ],
-    "hash" : "15683320581568350920",
+    "hash" : "15716780621568350920",
     "is_cpp" : true,
     "pch" : "Rcpp"
 }

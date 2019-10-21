@@ -17,6 +17,10 @@
 
 int get_type_size(int type);
 
+//Allocate result
+SEXP allocate_result(SEXP x, int type, R_xlen_t len);
+
+
 //Call a function with arguments
 SEXP make_call(SEXP fun);
 SEXP make_call(SEXP fun, SEXP x1);
@@ -24,3 +28,7 @@ SEXP make_call(SEXP fun, SEXP x1, SEXP x2);
 SEXP make_call(SEXP fun, SEXP x1, SEXP x2, SEXP x3);
 SEXP make_call(SEXP fun, SEXP x1, SEXP x2, SEXP x3, SEXP x4);
 SEXP make_call(SEXP fun, SEXP x1, SEXP x2, SEXP x3, SEXP x4, SEXP x5);
+
+
+bool C_has_pointer(SEXP x);
+bool C_is_altrep(SEXP x);
