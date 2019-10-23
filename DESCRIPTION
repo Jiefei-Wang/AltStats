@@ -13,6 +13,7 @@ Description: The package provides a quick fix for ALTREP.
     R functions to support these operations.
 License: GPL (>= 2)
 Depends: R (>= 3.6.0)
+biocViews: Infrastructure
 Imports: 
     Rcpp (>= 1.0.2),
     methods,

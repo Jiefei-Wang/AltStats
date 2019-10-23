@@ -13,6 +13,7 @@ NULL
 #' @param finite logical, indicating if all non-finite elements should be omitted.
 #' @param ... additional arguments
 #' @aliases range,altWrapper-method
+#' @return Please see the document of R's native functions to find the return value
 #' @rdname groupGeneric
 #' @export
 Ops.altWrapper <- function(e1, e2) {
@@ -37,7 +38,7 @@ Math.altWrapper <- function(x, ...) {
 #' @export
 range.altWrapper <- function(..., na.rm = FALSE, finite = FALSE) {
     args <- list(...)
-    argsPassDefault <- all(sapply(args, passToDefault))
+    argsPassDefault <- all(vapply(args, passToDefault,logical(1)))
     if (argsPassDefault) {
         return(NextMethod())
     }
@@ -60,7 +61,7 @@ setMethod("range", signature = signature("altWrapper"),
               } else{
                   args <- list(x)
               }
-              argsPassDefault <- all(sapply(args, passToDefault))
+              argsPassDefault <- all(vapply(args, passToDefault,logical(1)))
               if (argsPassDefault) {
                   return(callNextMethod())
               }

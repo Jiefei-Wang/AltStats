@@ -87,6 +87,10 @@ setClassUnion("altNumericUnion", c("altLogical", "altNumeric"))
 #' violates R's copy-on-change philosophy and cause the variable x 
 #' outside of the function also changes. It is useful only when the normal way to create 
 #' the class object does not work. The argument only works when `S3Class = TRUE`
+#' @examples
+#' A <- newAltWrapper(runif(10), S3Class = TRUE)
+#' A
+#' @return an S3/S4 object
 #' @export
 newAltWrapper <- function(x, S3Class = TRUE, S4Class, forceSet = FALSE){
     if(missing(S4Class))

@@ -3,32 +3,21 @@
 \alias{AltClass}
 \docType{package}
 \title{
-  A short title line describing what the package does
+  A Patch for R's Operators to Support ALTREP objects
 }
 \description{
-  A more detailed description of what the package does. A length
-  of about one to five lines is recommended.
-}
-\details{
-  This section should provide a more detailed overview of how to use the
-  package, including the most important functions.
+  The package provides a quick fix for ALTREP. 
+    An ALTREP object is an R object that behaves like an R atomic vector (e.g. integer vector). 
+    The definition of an ALTREP object is provided by users and it is possible that an ALTREP object
+    does not define a data pointer function. In this case, most R functions will throw an error 
+    when operate on the ALTREP objects. This package defines S3 and S4 classes to overload common
+    R functions to support these operations.
 }
 \author{
-Your Name, email optional.
-
-Maintainer: Your Name <your@email.com>
-}
-\references{
-  This optional section can contain literature or other references for
-  background information.
+Author: Jiefei Wang
+Maintainer: Jiefei Wang <szwjf08@gmail.com>
 }
 \keyword{ package }
-\seealso{
-  Optional links to other man pages
-}
 \examples{
-  \dontrun{
-     ## Optional simple examples of the most important functions
-     ## These can be in \dontrun{} and \donttest{} blocks.   
-  }
+  ## Please see the vignitte to find an example
 }

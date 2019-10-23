@@ -26,6 +26,9 @@
 
 \item{finite}{logical, indicating if all non-finite elements should be omitted.}
 }
+\value{
+Please see the document of R's native functions to find the return value
+}
 \description{
 The usage of the group generic functions is the same as R's native functions.
 Please see R's document for help.

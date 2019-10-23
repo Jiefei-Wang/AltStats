@@ -6,8 +6,8 @@ for (debug in c(TRUE, FALSE)) {
     
     A <- runif(10) - 0.5
     #Create altWrapper object
-    A_s3 <- newAltWrapper(A, S3Class = T)
-    A_s4 <- newAltWrapper(A, S4Class = T)
+    A_s3 <- newAltWrapper(A, S3Class = TRUE)
+    A_s4 <- newAltWrapper(A, S4Class = TRUE)
     
     test_that("Test add", {
         expect_equivalent(as.numeric(A_s3 + 1), A + 1)

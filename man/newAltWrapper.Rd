@@ -19,8 +19,15 @@ violates R's copy-on-change philosophy and cause the variable x
 outside of the function also changes. It is useful only when the normal way to create
 the class object does not work. The argument only works when \code{S3Class = TRUE}}
 }
+\value{
+an S3/S4 object
+}
 \description{
 This function will create a wrapper for an ALTREP object.
 Most functions in \code{?groupGeneric} have been overloaded and support
 ALTREP object.
+}
+\examples{
+A <- newAltWrapper(runif(10), S3Class = TRUE)
+A
 }
