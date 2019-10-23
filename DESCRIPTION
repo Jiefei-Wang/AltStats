@@ -1,23 +1,31 @@
 Package: AltStat
 Type: Package
-Title: What the Package Does in One 'Title Case' Line
-Version: 1.0
+Title: A Patch for R's Operators to Support ALTREP objects
+Version: 0.99.1
 Date: 2019-09-11
-Author: Your Name
-Maintainer: Your Name <your@email.com>
-Description: One paragraph description of what the package does as one or more
-         full sentences.
+Author: Jiefei Wang
+Maintainer: Jiefei Wang <szwjf08@gmail.com>
+Description: The package provides a quick fix for ALTREP. 
+    An ALTREP object is an R object that behaves like an R atomic vector (e.g. integer vector). 
+    The definition of an ALTREP object is provided by users and it is possible that an ALTREP object
+    does not define a data pointer function. In this case, most R functions will throw an error 
+    when operate on the ALTREP objects. This package defines S3 and S4 classes to overload common
+    R functions to support these operations.
 License: GPL (>= 2)
+Depends: R (>= 3.6.0)
 Imports: 
     Rcpp (>= 1.0.2),
-    methods
+    methods,
+    knitr
 LinkingTo: Rcpp
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
 Encoding: UTF-8
 Suggests: 
-    testthat
+    testthat,
+    rmarkdown,
+    BiocStyle
 Collate: 
     'RcppExports.R'
     'classDefine.R'

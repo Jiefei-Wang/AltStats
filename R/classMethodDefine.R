@@ -1,7 +1,21 @@
 #' @include groupGeneric.R
+NULL
 
+#' altWrapper group generic functions
+#' 
+#' The usage of the group generic functions is the same as R's native functions.
+#' Please see R's document for help.
+#' 
+#' @param e1 left operand
+#' @param e2 right operand
+#' @param x argument
+#' @param na.rm logical, indicating if NA's should be omitted.
+#' @param finite logical, indicating if all non-finite elements should be omitted.
+#' @param ... additional arguments
+#' @aliases range,altWrapper-method
+#' @rdname groupGeneric
 #' @export
-Ops.altNumeric <- function(e1, e2) {
+Ops.altWrapper <- function(e1, e2) {
     if (passToDefault(e1, e2)) {
         NextMethod()
     } else{
@@ -9,8 +23,9 @@ Ops.altNumeric <- function(e1, e2) {
     }
 }
 
+#' @rdname groupGeneric
 #' @export
-Math.altNumeric <- function(x, ...) {
+Math.altWrapper <- function(x, ...) {
     if (passMathToDefault(.Generic, x)) {
         NextMethod()
     } else{
@@ -18,8 +33,9 @@ Math.altNumeric <- function(x, ...) {
     }
 }
 
+#' @rdname groupGeneric
 #' @export
-range.altNumeric <- function(..., na.rm = FALSE, finite = FALSE) {
+range.altWrapper <- function(..., na.rm = FALSE, finite = FALSE) {
     args <- list(...)
     argsPassDefault <- all(sapply(args, passToDefault))
     if (argsPassDefault) {
@@ -30,29 +46,30 @@ range.altNumeric <- function(..., na.rm = FALSE, finite = FALSE) {
 
 
 
-setMethod("range", signature = signature("altNumeric"),function(x, ..., na.rm = FALSE){
-    finite <- FALSE
-    args <- list(...)
-    if(!is.null(args$finite)){
-        finite <- args$finite
-        args$finite <- NULL
-    }
-    
-    if(length(args)!=0){
-        args <- list(args, x)
-    }else{
-        args <- x
-    }
-    argsPassDefault <- all(sapply(args, passToDefault))
-    if (argsPassDefault) {
-        return(callNextMethod())
-    }
-    rangeFunc(args, na.rm, finite)
-})
+setMethod("range", signature = signature("altWrapper"),
+          function(x, ..., na.rm = FALSE) {
+              finite <- FALSE
+              args <- list(...)
+              if (!is.null(args$finite)) {
+                  finite <- args$finite
+                  args$finite <- NULL
+              }
+              
+              if (length(args) != 0) {
+                  args <- list(args, x)
+              } else{
+                  args <- list(x)
+              }
+              argsPassDefault <- all(sapply(args, passToDefault))
+              if (argsPassDefault) {
+                  return(callNextMethod())
+              }
+              rangeFunc(args, na.rm, finite)
+          })
 
 
 
-setMethod("Arith", signature = signature("altNumeric", "baseNumericOrMissing"),
+setMethod("Arith", signature = signature("altWrapper", "baseNumericOrMissing"),
           function(e1, e2) {
               if (passToDefault(e1, e2)) {
                   callNextMethod()
@@ -61,7 +78,7 @@ setMethod("Arith", signature = signature("altNumeric", "baseNumericOrMissing"),
               }
           })
 
-setMethod("Arith", signature = signature("baseNumeric", "altNumeric"),
+setMethod("Arith", signature = signature("baseNumeric", "altWrapper"),
           function(e1, e2) {
               if (passToDefault(e1, e2)) {
                   callNextMethod()
@@ -69,7 +86,7 @@ setMethod("Arith", signature = signature("baseNumeric", "altNumeric"),
                   genericDispatch(opsOperator, .Generic, e1 = e2, e2 = e1)
               }
           })
-setMethod("Compare", signature = signature("altNumeric", "baseNumericOrMissing"),
+setMethod("Compare", signature = signature("altWrapper", "baseNumericOrMissing"),
           function(e1, e2) {
               if (passToDefault(e1, e2)) {
                   callNextMethod()
@@ -78,7 +95,7 @@ setMethod("Compare", signature = signature("altNumeric", "baseNumericOrMissing")
               }
           })
 
-setMethod("Compare", signature = signature("baseNumeric", "altNumeric"),
+setMethod("Compare", signature = signature("baseNumeric", "altWrapper"),
           function(e1, e2) {
               if (passToDefault(e1, e2)) {
                   callNextMethod()
@@ -87,7 +104,7 @@ setMethod("Compare", signature = signature("baseNumeric", "altNumeric"),
               }
           })
 
-setMethod("Math", signature = signature("altNumeric"),
+setMethod("Math", signature = signature("altWrapper"),
           function(x) {
               if (passMathToDefault(.Generic, x)) {
                   callNextMethod()
@@ -95,4 +112,81 @@ setMethod("Math", signature = signature("altNumeric"),
                   genericDispatch(mathOperator, .Generic, x)
               }
           })
+
+################################
+##print method
+################################
+
+#' @title Print altWrapper vector values
+#'
+#' @description This function is a complement of the print function. 
+#' It is able to print ALTREP objects. In case that the
+#' data pointer is not available, the function will use `GET_REGION` API to 
+#' access the data.
+#'
+#' @param x An altWrapper object
+#' @param ... No effect, for compatibility only
+#' @examples
+#' A <- AltStat:::makeExampleAltrep(runif(4))
+#' 
+#' tryCatch(print(A), error=function(e) print(e))
+#' tryCatch(printAltWrapper(A), error=function(e) print(e))
+#'
+#' @return The argument `x`
+#' @name altWrapperPrint
+#' @rdname print-function
+#' @export
+print.altWrapper <- function(x, ...) {
+    if(C_has_pointer(x))
+        return(NextMethod())
+    printAltWrapper(x)
+    invisible(x)
+}
+
+## Set print dispatch for S4 class
+setMethod("show", "altWrapper", function(object)
+{
+    if(C_has_pointer(object))
+        return(callNextMethod())
+    printAltWrapper(object)
+    invisible(object)
+})
+
+#' @rdname print-function
+#' @export
+printAltWrapper <- function(x, ...) {
+    ## In generic call, the function return true if it wants to call
+    ## the parent function, return false if it can handle the print
+    ## In non-generic call, the function return the object x invisibly.
+    #.generic <- parent.frame(n = 1)[[".Generic"]]
+    #isGeneric <- !is.null(.generic)
+    if(C_has_pointer(x)){
+       return(print(x))
+    }
+    
+    
+    ## Chunk settings
+    maxPrint <- getOption("max.print")
+    printSize <- min(maxPrint, length(x))
+
+    out = vector(typeof(x), printSize)
+    attributes(out) = attributes(x)
+    C_copy_altrep_value(out, x)
+    
+    print(out)
+    ## Print truncate information
+    if (printSize < length(x)) {
+        cat(
+            '[ reached getOption("max.print") -- omitted ',
+            length(x) - printSize,
+            ' entries ]'
+        )
+    }
+    invisible(x)
+}
+
+
+
+
+
 

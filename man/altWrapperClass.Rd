@@ -3,12 +3,18 @@
 \docType{class}
 \name{altWrapperClass}
 \alias{altWrapperClass}
+\alias{.altWrapper}
 \alias{altWrapper-class}
 \alias{altNumeric-class}
 \alias{altRaw-class}
 \alias{altLogical-class}
 \alias{altInteger-class}
 \alias{altDouble-class}
+\alias{.altNumeric}
+\alias{.altRaw}
+\alias{.altLogical}
+\alias{.altInteger}
+\alias{.altDouble}
 \title{The S3/S4 classes for ALTREP of type \code{raw}, \code{logical}, \code{integer} and \code{double}}
 \description{
 The S3/S4 classes for \code{raw}, \code{logical}, \code{integer} and \code{double} are

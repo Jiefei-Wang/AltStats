@@ -1,11 +1,7 @@
-classNames<-data.frame(
-    name=c("altRaw", "altLogical", "altInteger", "altDouble"),
-    type=c("raw","logical","integer","double"),
-    stringsAsFactors = FALSE
-)
-
-
-getAltClass<-function(type){
+getAltClass<-function(type, S3Class = FALSE){
+    if(S3Class){
+        return(classNamesInherit[[type]])
+    }
     ind<-which(classNames$type==type)
     if(length(ind)==1){
         return(classNames$name[ind])
@@ -15,6 +11,9 @@ getAltClass<-function(type){
 
 
 passToDefault <- function(e1, e2) {
+    if(is(e1,"altRaw")||(!missing(e2)&&is(e2,"altRaw"))){
+        return(TRUE)
+    }
     if (dispatchToDefault &&
         C_has_pointer(e1) &&
         (missing(e2) || C_has_pointer(e2))) {
@@ -28,17 +27,19 @@ classInherit <- function(result, resAttr, e1){
     if (is.null(resAttr))
         return(result)
     if(!C_has_pointer(result)){
-        resAttr$class <- getAltClass(typeof(result))
         if (isS4(e1) && !isS4(result)) {
-            result <- new(resAttr$class, result)
+            result <- newAltWrapper(result, S4Class = TRUE)
+        }else{
+            result <- newAltWrapper(result, S3Class = TRUE)
         }
+        resAttr$class <- class(result)
     }else{
         ## If the result has a data pointer
         ## and its class is an alt class
         ## Remove the class attributes
         if(!is.null(resAttr$class)&&
-           any(resAttr$class%in%classNames$name)){
-            resAttr$class = resAttr$class[!resAttr$class%in%classNames$name]
+           any(resAttr$class%in%classNameList)){
+            resAttr$class = resAttr$class[!resAttr$class%in%classNameList]
             if(!length(resAttr$class)){
                 resAttr$class= NULL
             }
@@ -46,7 +47,7 @@ classInherit <- function(result, resAttr, e1){
             ## If the result is not of an alt class
             ## and it should be a S4 object
             if(!is.null(resAttr$class) && isS4(e1) && !isS4(result)){
-                result <- new(resAttr$class, result)
+                result <- newAltWrapper(result, S4Class = TRUE)
             }
         }
     }

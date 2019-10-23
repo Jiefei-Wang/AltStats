@@ -9,6 +9,18 @@ C_is_altrep <- function(x) {
     .Call(`_AltStat_C_is_altrep`, x)
 }
 
+C_force_attribute_set <- function(x, attrName, attr) {
+    invisible(.Call(`_AltStat_C_force_attribute_set`, x, attrName, attr))
+}
+
+C_copy_altrep_value <- function(target, source) {
+    invisible(.Call(`_AltStat_C_copy_altrep_value`, target, source))
+}
+
+makeExampleAltrep <- function(x) {
+    .Call(`_AltStat_makeExampleAltrep`, x)
+}
+
 C_arith_binary_operator <- function(op, x, y) {
     .Call(`_AltStat_C_arith_binary_operator`, op, x, y)
 }
@@ -19,6 +31,10 @@ C_arith_unary_operator <- function(op, x) {
 
 C_math_partial_operator <- function(op, x) {
     .Call(`_AltStat_C_math_partial_operator`, op, x)
+}
+
+C_math_operator <- function(op, x) {
+    .Call(`_AltStat_C_math_operator`, op, x)
 }
 
 C_range_function <- function(x, na_rm, finite) {

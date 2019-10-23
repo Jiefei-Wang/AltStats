@@ -40,50 +40,74 @@ switch (TYPEOF(x))\
 	case LGLSXP:\
 		SET_LOGICAL_ELT(x,i,v);\
 		break;\
+	case RAWSXP:\
+		RAW(x)[i]=v;\
+		break;\
 	default:\
 		Rf_error("Unknow data type\n");\
 		break;\
 }
 
 
-#include <R_ext/Itermacros.h>
-#undef ITERATE_BY_REGION_PARTIAL
-#undef ITERATE_BY_REGION
+#define GET_REGION_BUFSIZE 512
+#define GET_REGION_PTR(x, i, n, buf, type)				\
+    (ALTREP(x) == 0 ? type##0(x) + (i) : (type##_GET_REGION(x, i, n, buf), buf))
+
+#define ITERATE_BY_REGION_PARTIAL0(sx, px, idx, nb, etype, vtype,	\
+				   strt, nfull, expr) do {		\
+	etype __ibr_buf__[GET_REGION_BUFSIZE];				\
+	R_xlen_t __ibr_n__ = strt + nfull;				\
+	R_xlen_t nb;							\
+	for (R_xlen_t idx = strt; idx < __ibr_n__; idx += nb) {		\
+	    nb = __ibr_n__  - idx > GET_REGION_BUFSIZE ?		\
+		GET_REGION_BUFSIZE :  __ibr_n__ - idx;			\
+	    etype *px = GET_REGION_PTR(sx, idx, nb, __ibr_buf__, vtype); \
+	    expr							\
+	 }							        \
+    } while (0)
+
 #define ITERATE_BY_REGION_PARTIAL(sx, px, idx, nb, etype, vtype,	\
 				  strt, nfull, expr) do {		\
 	const etype *px = (const etype *)DATAPTR_OR_NULL(sx);				\
 	if (px != NULL) {						\
-	    R_xlen_t __ibr_n__ = strt + nfull;				\
-	    R_xlen_t nb = __ibr_n__;					\
-	    for (R_xlen_t idx = strt; idx < __ibr_n__; idx += nb) {	\
+	    R_xlen_t nb = nfull;					\
+		R_xlen_t idx = strt;			\
+		px = px + strt;					\
 		expr							\
-	     }								\
 	}								\
 	else ITERATE_BY_REGION_PARTIAL0(sx, px, idx, nb, etype, vtype,	\
 					strt, nfull, expr);		\
     } while (0)
 
-#define ITERATE_BY_REGION(sx, px, idx, nb, etype, vtype, expr) do {	\
-	ITERATE_BY_REGION_PARTIAL(sx, px, idx, nb, etype, vtype,	\
-				  0, XLENGTH(sx), expr);		\
-    } while (0)
 
-
-#define TYPE_FREE_ITER(sx, ptr, ind, nbatch,expr)\
+#define TYPE_FREE_ITER_PARTIAL(sx, ptr, idx, nbatch, start, size, expr)\
 switch(TYPEOF(sx)){\
 case INTSXP:\
-	ITERATE_BY_REGION(sx, ptr, ind, nbatch, int, INTEGER, expr);\
+	ITERATE_BY_REGION_PARTIAL(sx, ptr, idx, nbatch, int, INTEGER, start, size, expr);\
 	break; \
 case REALSXP:\
-	ITERATE_BY_REGION(sx, ptr, ind, nbatch, double, REAL, expr);\
+	ITERATE_BY_REGION_PARTIAL(sx, ptr, idx, nbatch, double, REAL, start, size, expr);\
 	break; \
 case LGLSXP:\
-	ITERATE_BY_REGION(sx, ptr, ind, nbatch, int, LOGICAL, expr);\
+	ITERATE_BY_REGION_PARTIAL(sx, ptr, idx, nbatch, int, LOGICAL, start, size, expr);\
+	break; \
+case RAWSXP:\
+	ITERATE_BY_REGION_PARTIAL(sx, ptr, idx, nbatch, Rbyte, RAW, start, size, expr); \
 	break; \
 default:\
 	Rf_error("Unknow data type\n"); \
 	break; \
 }
+
+#define ITERATE_BY_REGION(sx, px, idx, nb, etype, vtype, expr)\
+	ITERATE_BY_REGION_PARTIAL(sx, px, idx, nb, etype, vtype,	\
+				  0, XLENGTH(sx), expr);
+
+#define TYPE_FREE_ITER(sx, ptr, idx, nbatch,expr)\
+TYPE_FREE_ITER_PARTIAL(sx, ptr, idx, nbatch, 0, XLENGTH(sx), expr)
+
+
+
 
 #define GET_PTR_OR_REGION(x, x_ptr, batch, has_ptr, type)\
 type* x_ptr; \

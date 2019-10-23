@@ -171,9 +171,9 @@ SEXP C_arith_unary_operator(SEXP op, SEXP x) {
 	int result_type = get_arith_unary_operator_type(op_char, x);
 	SEXP result = PROTECT(allocate_result(x, result_type, XLENGTH(x)));
 
-	TYPE_FREE_ITER(x, ptr, ind, nbatch, {
+	TYPE_FREE_ITER(x, ptr, idx, nbatch, {
 			for (int i = 0; i < nbatch; i++) {
-				SET_ELT_TEMPLATE(result, ind + i, unary_operate,(op_char, ptr[i]));
+				SET_ELT_TEMPLATE(result, idx + i, unary_operate,(op_char, ptr[i]));
 			}
 		}
 	);
@@ -219,7 +219,7 @@ SEXP C_math_partial_operator(SEXP op, SEXP x) {
 			SET_ELT(result, 0, partial_record);
 			ITERATE_BY_REGION_PARTIAL(x, ptr, ind, nbatch, int, LOGICAL,1,XLENGTH(x), {
 				for (R_xlen_t i = 0; i < nbatch; i++)
-				SET_ELT(result, ind + i, math_partial_operate(op_char,partial_record,LOGICAL_ELT(x,ind + i)));
+				SET_ELT(result, ind + i, math_partial_operate(op_char,partial_record, ptr[i]));
 				}
 			);
 		}
@@ -230,7 +230,7 @@ SEXP C_math_partial_operator(SEXP op, SEXP x) {
 			SET_ELT(result, 0, partial_record);
 			ITERATE_BY_REGION_PARTIAL(x, ptr, ind, nbatch, int, INTEGER, 1, XLENGTH(x), {
 			for (R_xlen_t i = 0; i < nbatch; i++)
-			SET_ELT(result, ind + i, math_partial_operate(op_char, partial_record,INTEGER_ELT(x,ind + i)));
+			SET_ELT(result, ind + i, math_partial_operate(op_char, partial_record, ptr[i]));
 				}
 			);
 		}
@@ -240,8 +240,10 @@ SEXP C_math_partial_operator(SEXP op, SEXP x) {
 			double partial_record = REAL_ELT(x, 0);
 			SET_ELT(result, 0, partial_record);
 			ITERATE_BY_REGION_PARTIAL(x, ptr, ind, nbatch, double, REAL, 1, XLENGTH(x), {
-			for (R_xlen_t i = 0; i < nbatch; i++)
-			SET_ELT(result, ind + i, math_partial_operate(op_char, partial_record,REAL_ELT(x,ind + i)));
+			for (R_xlen_t i = 0; i < nbatch; i++) {
+				//Rprintf("ind: %lld, i: %lld, ptr:%f, True value: %f \n", ind, i, ptr[i], REAL_ELT(x, ind + i));
+				SET_ELT(result, ind + i, math_partial_operate(op_char, partial_record, ptr[i]));
+			}
 				}
 			);
 		}
@@ -265,7 +267,7 @@ double math_operate(const char* op, T x) {
 			return (T)0;
 		}
 		else {
-			return std::signbit(x);
+			return -std::signbit(x)*2+1;
 		}
 	}
 	if (CHAR_EQUAL(op, "sqrt"))
@@ -326,16 +328,18 @@ double math_operate(const char* op, T x) {
 	Rf_error("Unsupported unary operator: %s", op);
 }
 
+// [[Rcpp::export]]
 SEXP C_math_operator(SEXP op, SEXP x) {
 	const char* op_char = STRSXP_TO_CHAR(op);
 	int result_type = REALSXP;
 	SEXP result = PROTECT(allocate_result(x, result_type, XLENGTH(x)));
 	TYPE_FREE_ITER(x, ptr, ind, nbatch, {
 			for (R_xlen_t i = 0; i < nbatch; i++)
-			SET_ELT(result, ind + i, math_operate(op_char,LOGICAL_ELT(x,ind + i)));
+			SET_ELT(result, ind + i, math_operate(op_char, ptr[i]));
 		}
 	);
-
+	UNPROTECT(1);
+	return result;
 }
 
 
@@ -381,23 +385,42 @@ SEXP C_range_function(SEXP x, bool na_rm, bool finite) {
 	void* result_ptr = DATAPTR(result);
 	
 	bool initialized = false;
-
 	TYPE_FREE_ITER(x, ptr, ind, nbatch, {
 		for (int i = 0; i < nbatch; i++) {
 			if (!initialized) {
-				if (!IS_NA(ptr[i], data_type) && std::isfinite(ptr[i])) {
+				if (std::isnan(ptr[i])) {
+					if (!na_rm&& !finite) {
+						SET_ELT(result, 0, ptr[i]);
+						SET_ELT(result, 1, ptr[i]);
+						initialized = true;
+						continue;
+					}
+				}
+				else if (std::isfinite(ptr[i])) {
 					SET_ELT(result, 0, ptr[i]);
 					SET_ELT(result, 1, ptr[i]);
 					initialized = true;
+					continue;
 				}
+				else if (!finite) {
+					SET_ELT(result, 0, ptr[i]);
+					SET_ELT(result, 1, ptr[i]);
+					initialized = true;
+					continue;
+				}
+
 				if (ind + i == XLENGTH(result)) {
 					SET_ELT(result, 0, ptr[i]);
 					SET_ELT(result, 1, ptr[i]);
 				}
 			}
+			else {
+				break;
+			}
 		}
 		}
 	);
+
 
 	TYPE_FREE_ITER(x, ptr, ind, nbatch, {
 		for (int i = 0; i < nbatch; i++) {

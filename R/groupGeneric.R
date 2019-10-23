@@ -3,7 +3,7 @@ passMathToDefault <- function(generic, e1) {
 }
 
 mathOperator <- function(.Generic, e1) {
-     message("called")
+    #message("called")
     if(.Generic %in% c("cummax", "cummin", "cumprod", "cumsum")){
         C_math_partial_operator(.Generic, e1)
     }else{
@@ -13,7 +13,7 @@ mathOperator <- function(.Generic, e1) {
 
 
 opsOperator <- function(.Generic, e1, e2) {
-     message("called")
+    #message("called")
     ## unary operator
     if (missing(e2)) {
         if (length(e1) == 0) {
@@ -34,11 +34,21 @@ opsOperator <- function(.Generic, e1, e2) {
 }
 
 rangeFunc <- function(args, na.rm = FALSE, finite = FALSE){
-     message("called")
+    #message("called")
     minMaxResult <- matrix(0L, length(args), 2)
     for (i in seq_along(args)) {
-        minMaxResult[i, ] <- C_range_function(args[[i]], na.rm, finite)
+        if(passToDefault(args[[i]])){
+            minMaxResult[i, ] <-range(args[[i]])
+        }else{
+            minMaxResult[i, ] <- C_range_function(args[[i]], na.rm, finite)
+        }
     }
-    c(min(minMaxResult[, 1]), max(minMaxResult[, 2]))
+    minResult <- minMaxResult[, 1]
+    maxResult <- minMaxResult[, 2]
+    if(finite){
+        minResult=minResult[is.finite(minResult)]
+        maxResult=maxResult[is.finite(maxResult)]
+    }
+    c(min(minResult, na.rm =na.rm), max(maxResult, na.rm =na.rm))
 } 
 
