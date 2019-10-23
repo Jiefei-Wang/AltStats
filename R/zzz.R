@@ -1,4 +1,4 @@
-#' @useDynLib AltStat, .registration = TRUE
+#' @useDynLib AltStats, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
 #' @importFrom methods callGeneric callNextMethod is new
 #' @import knitr

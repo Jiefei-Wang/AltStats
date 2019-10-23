@@ -1,4 +1,5 @@
 #include <Rcpp.h>
+#include "tools.h"
 using namespace Rcpp;
 #include <R_ext/Altrep.h>
 
@@ -31,7 +32,7 @@ SEXP makeExampleAltrep(SEXP x) {
 // [[Rcpp::init]]
 void init_altrep_double(DllInfo* dll){
 	//Rprintf("initialized\n");
-	class_t = R_make_altreal_class("example", "AltStat", dll);
+	class_t = R_make_altreal_class("example", PACKAGE_NAME, dll);
 
 	R_set_altrep_Length_method(class_t, Length);
 	//R_set_altrep_Inspect_method(class_t, Inspect);

@@ -1,15 +1,16 @@
-Package: AltStat
+Package: AltStats
 Type: Package
 Title: A Patch for R's Operators to Support ALTREP objects
-Version: 0.99.6
+Version: 0.99.7
 Date: 2019-09-11
 Author: Jiefei Wang
 Maintainer: Jiefei Wang <szwjf08@gmail.com>
 Description: The package provides a quick fix for ALTREP. 
     An ALTREP object is an R object that behaves like an R atomic vector (e.g. integer vector). 
-    The definition of an ALTREP object is provided by users and it is possible that an ALTREP object
-    does not define a data pointer function. In this case, most R functions will throw an error 
-    when operate on the ALTREP objects. This package defines S3 and S4 classes to overload common
+    The definition of an ALTREP object can be provided by users and it is possible that an 
+    ALTREP object does not define a data pointer function (Or does not have a pointer). 
+    In this case, most R functions will throw an error when operate on the ALTREP objects.
+    This package defines S3 and S4 classes to overload common
     R functions to support these operations.
 License: GPL (>= 2)
 Depends: R (>= 3.6.0)

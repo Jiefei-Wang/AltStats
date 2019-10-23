@@ -3,7 +3,7 @@
 
 #define DEBUG(x)
 
-#define PACKAGE_NAME "AltStat"
+#define PACKAGE_NAME "AltStats"
 #define PACKAGE_ENV_NAME "namespace:" PACKAGE_NAME
 #define PACKAGE_NAMESPACE R_FindNamespace(Rf_mkString(PACKAGE_NAME))
 

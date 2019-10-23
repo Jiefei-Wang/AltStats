@@ -128,7 +128,7 @@ setMethod("Math", signature = signature("altWrapper"),
 #' @param x An altWrapper object
 #' @param ... No effect, for compatibility only
 #' @examples
-#' A <- AltStat:::makeExampleAltrep(runif(4))
+#' A <- AltStats:::makeExampleAltrep(runif(4))
 #' 
 #' tryCatch(print(A), error=function(e) print(e))
 #' tryCatch(printAltWrapper(A), error=function(e) print(e))

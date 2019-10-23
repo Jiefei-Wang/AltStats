@@ -2,7 +2,7 @@ context("Test group generic")
 ##Turn off default dispatch
 
 for (debug in c(TRUE, FALSE)) {
-    AltStat:::debug(debug)
+    AltStats:::debug(debug)
     
     A <- runif(10) - 0.5
     #Create altWrapper object

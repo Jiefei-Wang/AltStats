@@ -1,5 +1,5 @@
 library(testthat)
-library(AltStat)
-test_check("AltStat")
+library(AltStats)
+test_check("AltStats")
 
 
