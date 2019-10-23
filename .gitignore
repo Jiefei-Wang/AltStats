@@ -8,3 +8,4 @@ src/*.dll
 inst/test/
 .Rproj.user
 inst/doc
+AltStat.Rproj
