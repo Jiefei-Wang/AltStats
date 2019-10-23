@@ -76,7 +76,7 @@ setClassUnion("altNumericUnion", c("altLogical", "altNumeric"))
 #' Make an ALTREP S3 or S4 class
 #' 
 #' This function will create a wrapper for an ALTREP object.
-#' Most functions in `?groupGeneric` have been overloaded and support
+#' Most functions in `?groupGeneric` have been overrided and support
 #' ALTREP object. 
 #' 
 #' @param x an ALTREP object.

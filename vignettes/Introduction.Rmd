@@ -68,7 +68,7 @@ tryCatch(abs(B), error=function(e) print(e))
 tryCatch(cumsum(B), error=function(e) print(e))
 ```
 
-To solve this issue, the package provides S3 and S4 classes to overload the default R functions. You can create an S3 or S4 object by calling `newAltWrapper`. 
+To solve this issue, the package provides S3 and S4 classes to override the default R functions. You can create an S3 or S4 object by calling `newAltWrapper`. 
 ```{r}
 C <- newAltWrapper(B, S3Class = TRUE, forceSet = TRUE)
 ```
@@ -87,7 +87,7 @@ C == 1
 abs(C)
 cumsum(C)
 ```
-The variable `C` works as usual, most functions in `?"group generic"` has been overloaded to support ALTREP.
+The variable `C` works as usual, most functions in `?"group generic"` has been overrided to support ALTREP.
 
 #Session info
 ```{r}
