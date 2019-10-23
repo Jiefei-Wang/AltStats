@@ -260,8 +260,12 @@ SEXP C_math_partial_operator(SEXP op, SEXP x) {
 template<class T>
 double math_operate(const char* op, T x) {
 	CHECK_NA(T, x);
-	if (CHAR_EQUAL(op, "abs"))
+	if (CHAR_EQUAL(op, "abs")) {
+		if (std::is_same(unsigned char, T)) {
+			return x;
+		}
 		return std::abs(x);
+	}
 	if (CHAR_EQUAL(op, "sign")) {
 		if (x == (T)0) {
 			return (T)0;
