@@ -2,46 +2,46 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 C_has_pointer <- function(x) {
-    .Call(`_AltStat_C_has_pointer`, x)
+    .Call(`_AltStats_C_has_pointer`, x)
 }
 
 C_is_altrep <- function(x) {
-    .Call(`_AltStat_C_is_altrep`, x)
+    .Call(`_AltStats_C_is_altrep`, x)
 }
 
 C_force_attribute_set <- function(x, attrName, attr) {
-    invisible(.Call(`_AltStat_C_force_attribute_set`, x, attrName, attr))
+    invisible(.Call(`_AltStats_C_force_attribute_set`, x, attrName, attr))
 }
 
 C_copy_altrep_value <- function(target, source) {
-    invisible(.Call(`_AltStat_C_copy_altrep_value`, target, source))
+    invisible(.Call(`_AltStats_C_copy_altrep_value`, target, source))
 }
 
 makeExampleAltrep <- function(x) {
-    .Call(`_AltStat_makeExampleAltrep`, x)
+    .Call(`_AltStats_makeExampleAltrep`, x)
 }
 
 C_arith_binary_operator <- function(op, x, y) {
-    .Call(`_AltStat_C_arith_binary_operator`, op, x, y)
+    .Call(`_AltStats_C_arith_binary_operator`, op, x, y)
 }
 
 C_arith_unary_operator <- function(op, x) {
-    .Call(`_AltStat_C_arith_unary_operator`, op, x)
+    .Call(`_AltStats_C_arith_unary_operator`, op, x)
 }
 
 C_math_partial_operator <- function(op, x) {
-    .Call(`_AltStat_C_math_partial_operator`, op, x)
+    .Call(`_AltStats_C_math_partial_operator`, op, x)
 }
 
 C_math_operator <- function(op, x) {
-    .Call(`_AltStat_C_math_operator`, op, x)
+    .Call(`_AltStats_C_math_operator`, op, x)
 }
 
 C_range_function <- function(x, na_rm, finite) {
-    .Call(`_AltStat_C_range_function`, x, na_rm, finite)
+    .Call(`_AltStats_C_range_function`, x, na_rm, finite)
 }
 
 test <- function(x, y) {
-    .Call(`_AltStat_test`, x, y)
+    .Call(`_AltStats_test`, x, y)
 }
 

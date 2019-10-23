@@ -25,7 +25,7 @@ data pointer is not available, the function will use \code{GET_REGION} API to
 access the data.
 }
 \examples{
-A <- AltStat:::makeExampleAltrep(runif(4))
+A <- AltStats:::makeExampleAltrep(runif(4))
 
 tryCatch(print(A), error=function(e) print(e))
 tryCatch(printAltWrapper(A), error=function(e) print(e))

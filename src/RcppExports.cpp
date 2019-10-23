@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // C_has_pointer
 bool C_has_pointer(SEXP x);
-RcppExport SEXP _AltStat_C_has_pointer(SEXP xSEXP) {
+RcppExport SEXP _AltStats_C_has_pointer(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -18,7 +18,7 @@ END_RCPP
 }
 // C_is_altrep
 bool C_is_altrep(SEXP x);
-RcppExport SEXP _AltStat_C_is_altrep(SEXP xSEXP) {
+RcppExport SEXP _AltStats_C_is_altrep(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -29,7 +29,7 @@ END_RCPP
 }
 // C_force_attribute_set
 void C_force_attribute_set(SEXP x, SEXP attrName, SEXP attr);
-RcppExport SEXP _AltStat_C_force_attribute_set(SEXP xSEXP, SEXP attrNameSEXP, SEXP attrSEXP) {
+RcppExport SEXP _AltStats_C_force_attribute_set(SEXP xSEXP, SEXP attrNameSEXP, SEXP attrSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
@@ -41,7 +41,7 @@ END_RCPP
 }
 // C_copy_altrep_value
 void C_copy_altrep_value(SEXP target, SEXP source);
-RcppExport SEXP _AltStat_C_copy_altrep_value(SEXP targetSEXP, SEXP sourceSEXP) {
+RcppExport SEXP _AltStats_C_copy_altrep_value(SEXP targetSEXP, SEXP sourceSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type target(targetSEXP);
@@ -52,7 +52,7 @@ END_RCPP
 }
 // makeExampleAltrep
 SEXP makeExampleAltrep(SEXP x);
-RcppExport SEXP _AltStat_makeExampleAltrep(SEXP xSEXP) {
+RcppExport SEXP _AltStats_makeExampleAltrep(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -63,7 +63,7 @@ END_RCPP
 }
 // C_arith_binary_operator
 SEXP C_arith_binary_operator(SEXP op, SEXP x, SEXP y);
-RcppExport SEXP _AltStat_C_arith_binary_operator(SEXP opSEXP, SEXP xSEXP, SEXP ySEXP) {
+RcppExport SEXP _AltStats_C_arith_binary_operator(SEXP opSEXP, SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -76,7 +76,7 @@ END_RCPP
 }
 // C_arith_unary_operator
 SEXP C_arith_unary_operator(SEXP op, SEXP x);
-RcppExport SEXP _AltStat_C_arith_unary_operator(SEXP opSEXP, SEXP xSEXP) {
+RcppExport SEXP _AltStats_C_arith_unary_operator(SEXP opSEXP, SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -88,7 +88,7 @@ END_RCPP
 }
 // C_math_partial_operator
 SEXP C_math_partial_operator(SEXP op, SEXP x);
-RcppExport SEXP _AltStat_C_math_partial_operator(SEXP opSEXP, SEXP xSEXP) {
+RcppExport SEXP _AltStats_C_math_partial_operator(SEXP opSEXP, SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -100,7 +100,7 @@ END_RCPP
 }
 // C_math_operator
 SEXP C_math_operator(SEXP op, SEXP x);
-RcppExport SEXP _AltStat_C_math_operator(SEXP opSEXP, SEXP xSEXP) {
+RcppExport SEXP _AltStats_C_math_operator(SEXP opSEXP, SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -112,7 +112,7 @@ END_RCPP
 }
 // C_range_function
 SEXP C_range_function(SEXP x, bool na_rm, bool finite);
-RcppExport SEXP _AltStat_C_range_function(SEXP xSEXP, SEXP na_rmSEXP, SEXP finiteSEXP) {
+RcppExport SEXP _AltStats_C_range_function(SEXP xSEXP, SEXP na_rmSEXP, SEXP finiteSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -125,7 +125,7 @@ END_RCPP
 }
 // test
 int test(int x, int y);
-RcppExport SEXP _AltStat_test(SEXP xSEXP, SEXP ySEXP) {
+RcppExport SEXP _AltStats_test(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -137,22 +137,22 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_AltStat_C_has_pointer", (DL_FUNC) &_AltStat_C_has_pointer, 1},
-    {"_AltStat_C_is_altrep", (DL_FUNC) &_AltStat_C_is_altrep, 1},
-    {"_AltStat_C_force_attribute_set", (DL_FUNC) &_AltStat_C_force_attribute_set, 3},
-    {"_AltStat_C_copy_altrep_value", (DL_FUNC) &_AltStat_C_copy_altrep_value, 2},
-    {"_AltStat_makeExampleAltrep", (DL_FUNC) &_AltStat_makeExampleAltrep, 1},
-    {"_AltStat_C_arith_binary_operator", (DL_FUNC) &_AltStat_C_arith_binary_operator, 3},
-    {"_AltStat_C_arith_unary_operator", (DL_FUNC) &_AltStat_C_arith_unary_operator, 2},
-    {"_AltStat_C_math_partial_operator", (DL_FUNC) &_AltStat_C_math_partial_operator, 2},
-    {"_AltStat_C_math_operator", (DL_FUNC) &_AltStat_C_math_operator, 2},
-    {"_AltStat_C_range_function", (DL_FUNC) &_AltStat_C_range_function, 3},
-    {"_AltStat_test", (DL_FUNC) &_AltStat_test, 2},
+    {"_AltStats_C_has_pointer", (DL_FUNC) &_AltStats_C_has_pointer, 1},
+    {"_AltStats_C_is_altrep", (DL_FUNC) &_AltStats_C_is_altrep, 1},
+    {"_AltStats_C_force_attribute_set", (DL_FUNC) &_AltStats_C_force_attribute_set, 3},
+    {"_AltStats_C_copy_altrep_value", (DL_FUNC) &_AltStats_C_copy_altrep_value, 2},
+    {"_AltStats_makeExampleAltrep", (DL_FUNC) &_AltStats_makeExampleAltrep, 1},
+    {"_AltStats_C_arith_binary_operator", (DL_FUNC) &_AltStats_C_arith_binary_operator, 3},
+    {"_AltStats_C_arith_unary_operator", (DL_FUNC) &_AltStats_C_arith_unary_operator, 2},
+    {"_AltStats_C_math_partial_operator", (DL_FUNC) &_AltStats_C_math_partial_operator, 2},
+    {"_AltStats_C_math_operator", (DL_FUNC) &_AltStats_C_math_operator, 2},
+    {"_AltStats_C_range_function", (DL_FUNC) &_AltStats_C_range_function, 3},
+    {"_AltStats_test", (DL_FUNC) &_AltStats_test, 2},
     {NULL, NULL, 0}
 };
 
 void init_altrep_double(DllInfo* dll);
-RcppExport void R_init_AltStat(DllInfo *dll) {
+RcppExport void R_init_AltStats(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
     init_altrep_double(dll);

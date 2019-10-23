@@ -24,7 +24,7 @@ an S3/S4 object
 }
 \description{
 This function will create a wrapper for an ALTREP object.
-Most functions in \code{?groupGeneric} have been overloaded and support
+Most functions in \code{?groupGeneric} have been overrided and support
 ALTREP object.
 }
 \examples{
