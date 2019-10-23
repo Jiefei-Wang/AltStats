@@ -261,7 +261,7 @@ template<class T>
 double math_operate(const char* op, T x) {
 	CHECK_NA(T, x);
 	if (CHAR_EQUAL(op, "abs")) {
-		return std::abs(x);
+		return std::abs((double)x);
 	}
 	if (CHAR_EQUAL(op, "sign")) {
 		if (x == (T)0) {
