@@ -1,7 +1,7 @@
 Package: AltStat
 Type: Package
 Title: A Patch for R's Operators to Support ALTREP objects
-Version: 0.99.3
+Version: 0.99.4
 Date: 2019-09-11
 Author: Jiefei Wang
 Maintainer: Jiefei Wang <szwjf08@gmail.com>

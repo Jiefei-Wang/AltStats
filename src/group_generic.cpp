@@ -261,10 +261,12 @@ template<class T>
 double math_operate(const char* op, T x) {
 	CHECK_NA(T, x);
 	if (CHAR_EQUAL(op, "abs")) {
-		if (std::is_same(unsigned char, T)) {
+		if (std::is_same<T, unsigned char>::value) {
 			return x;
 		}
-		return std::abs(x);
+		else {
+			return std::abs(x);
+		}
 	}
 	if (CHAR_EQUAL(op, "sign")) {
 		if (x == (T)0) {
