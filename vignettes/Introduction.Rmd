@@ -34,7 +34,7 @@ A <- runif(4)
 ## ALTREP object
 ## This function is defined in the package
 ## and not exported
-B <- AltStat:::makeExampleAltrep(A)
+B <- AltStats:::makeExampleAltrep(A)
 
 ## compare A and B
 typeof(A)
