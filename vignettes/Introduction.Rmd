@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-library(AltStat)
+library(AltStats)
 ```
 
 ALTREP is a newly introduced feature in R since R 3.5. It is an alternative way to represent R's atomic vector. By defining a set of functions in C level, users are able to define their own ALTREP class and create an ALTREP object that behaves exactly the same as R's atomic vector at the R level. Please refer to [ALTREP overview](https://blog.revolutionanalytics.com/2017/09/altrep-preview.html) and [ALTREP C++ implementation](https://purrple.cat/blog/2018/10/14/altrep-and-cpp/) to see details about ALTREP.
