@@ -151,6 +151,19 @@ int get_arith_unary_operator_type(const char* op, SEXP x) {
 	return TYPEOF(x);
 }
 
+//This is a simple template to
+//solve an annoying warning when
+//taking absolute value over an unsigned char 
+template<class T>
+T myAbs(T x) {
+	return std::abs(x);
+}
+
+template<> 
+unsigned char myAbs<unsigned char>(unsigned char x) {
+	return x;
+}
+
 template<class T1,class T2>
 T1 unary_operate(const char* op, T2 x) {
 	CHECK_NA(T2, x);
@@ -159,7 +172,7 @@ T1 unary_operate(const char* op, T2 x) {
 	if (CHAR_EQUAL(op, "!"))
 		return !x;
 	if (CHAR_EQUAL(op, "abs"))
-		return std::abs(x);
+		return myAbs(x);
 	Rf_error("Unsupported unary operator: %s", op);
 	return 0;
 }

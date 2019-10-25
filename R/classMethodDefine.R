@@ -156,17 +156,12 @@ setMethod("show", "altWrapper", function(object)
 #' @rdname print-function
 #' @export
 printAltWrapper <- function(x, ...) {
-    ## In generic call, the function return true if it wants to call
-    ## the parent function, return false if it can handle the print
-    ## In non-generic call, the function return the object x invisibly.
-    #.generic <- parent.frame(n = 1)[[".Generic"]]
-    #isGeneric <- !is.null(.generic)
+    ## If x has a pointer, we can pass it to the default method
     if(C_has_pointer(x)){
        return(print(x))
     }
     
-    
-    ## Chunk settings
+    ## Create a temporary variable to print the value of x
     maxPrint <- getOption("max.print")
     printSize <- min(maxPrint, length(x))
 

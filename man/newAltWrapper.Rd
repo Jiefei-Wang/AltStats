@@ -15,9 +15,9 @@ newAltWrapper(x, S3Class = TRUE, S4Class, forceSet = FALSE)
 S3Class and S4Class are TRUE, the package will use S4Class}
 
 \item{forceSet}{logical, force R to set the class attribute for the variable x, it
-violates R's copy-on-change philosophy and cause the variable x
-outside of the function also changes. It is useful only when the normal way to create
-the class object does not work. The argument only works when \code{S3Class = TRUE}}
+violates R's copy-on-change philosophy and also changes the value of \code{x} that is
+passed to the function. It is only useful when the normal way to create
+the class object does not work. If \code{forceSet = TRUE}, the function will return an S3 object.}
 }
 \value{
 an S3/S4 object

@@ -84,15 +84,19 @@ setClassUnion("altNumericUnion", c("altLogical", "altNumeric"))
 #' @param S4Class logical, whether the result is an S4 object, if both
 #' S3Class and S4Class are TRUE, the package will use S4Class 
 #' @param forceSet logical, force R to set the class attribute for the variable x, it
-#' violates R's copy-on-change philosophy and cause the variable x 
-#' outside of the function also changes. It is useful only when the normal way to create 
-#' the class object does not work. The argument only works when `S3Class = TRUE`
+#' violates R's copy-on-change philosophy and also changes the value of `x` that is 
+#' passed to the function. It is only useful when the normal way to create 
+#' the class object does not work. If `forceSet = TRUE`, the function will return an S3 object.
 #' @examples
 #' A <- newAltWrapper(runif(10), S3Class = TRUE)
 #' A
 #' @return an S3/S4 object
 #' @export
 newAltWrapper <- function(x, S3Class = TRUE, S4Class, forceSet = FALSE){
+    if(forceSet){
+        S3Class <- TRUE
+        S4Class <- FALSE
+    }
     if(missing(S4Class))
         S4Class <- !S3Class
     if(!S3Class&& !S4Class){
